@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="homework.css">
+
+    <title>Hello, world!</title>
+    <style>
+        #obj {
+            position: absolute;
+            left: 0;
+            top: 125px;
+            height: 50px;
+            width: 50px;
+            background-image: url(assets/plastic.png);
+        }
+
+        #fish {
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            height: 110px;
+            width: 170px;
+            background-image: url(assets/fish.png);
+        }
+
+        #shark {
+            position: absolute;
+            left: 500px;
+            top: 50px;
+            height: 167px;
+            width: 255px;
+            background-image: url(assets/shark.png);
+        }
+
+        #person {
+            position: absolute;
+            right: 0px;
+            top: 10px;
+            height: 255px;
+            width: 285px;
+            background-image: url(assets/person.png);
+        }
+
+        #obj.changetofish {
+            background-image: url(assets/changetofish.png);
+            height: 110px;
+            width: 170px;
+            top: 100px;
+        }
+
+        #obj.changetoshark {
+            background-image: url(assets/changetoshark.png);
+            height: 167px;
+            width: 255px;
+            top: 50px;
+        }
+
+        #obj.changetoface {
+            background-image: url(assets/face.png);
+            width: 247px;
+            height: 255px;
+            top: 10px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .oceangarbage {
+            background-image: url(assets/oceangarbage.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="oceangarbage text-center" style="height:600px;">
+        <div class="container" style="height:100px;"></div>
+        <h1 class="words">心理三B07207003陳洛涵</h1>
+        <div class="container" style="height:100px;"></div>
+        <div class="container slideanimate" style="background-color:aliceblue">
+            <p style="color:gray">透過橫向卷軸，可以展現塑膠微粒如何進入人體的生態鏈</p>
+            <p style="color:gray">因為生態鏈是一個累積的過程，讓所有物件在同一畫面中呈現</p>
+            <p style="color:gray">較能展現生態鏈的累積感，所以適合使用橫向卷軸</p>
+            <p style="color:gray">並透過addClass與removeClass讓圖片符合生態鏈的方向</p>
+        </div>
+    </div>
+    
+    <div id="navbar" class="container-fluid sticky-top" style="background-image: url(assets/deepocean.jpg);height:50vh;">
+        <div id="obj"></div>
+        <div id="fish"></div>
+        <div id="shark"></div>
+        <div id="person"></div>
+    </div>
+    
+    <div class="container-fluid" style="min-height:2000px;"> </div>
+    <div class="container-fluid" style="min-height:2000px;"> </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            var tofix1_height = $('#navbar').offset().bottom; //Reserve the original height
+            //            var tofix2_height = $('#tofix2').offset().top; //Reserve the original height
+
+            $(window).scroll(function() {
+                var max_scroll = $(document).height() - $(window).height();
+                var max_w = $(window).width() - $('#obj').width();
+                var current_pos = $(window).scrollTop();
+                console.log(current_pos);
+
+                var new_left = max_w * current_pos / max_scroll;
+                $('#obj').css({
+                    'left': new_left
+                });
+                if (new_left >= 200) {
+                    $('#obj').addClass('changetofish');
+                    $('#fish').addClass('hide');
+                } else {
+                    $('#obj').removeClass('changetofish');
+                    $('#fish').removeClass('hide');
+                }
+                if (new_left >= 500) {
+                    $('#obj').addClass('changetoshark');
+                    $('#shark').addClass('hide');
+                } else {
+                    $('#obj').removeClass('changetoshark');
+                    $('#shark').removeClass('hide');
+                }
+                if (new_left >= max_w) {
+                    $('#obj').addClass('changetoface');
+                    $('#person').addClass('hide');
+                } else {
+                    $('#obj').removeClass('changetoface');
+                    $('#person').removeClass('hide');
+                }
+            });
+        });
+        $(function() {
+            $(window).scroll(function() {
+                $(".slideanimate").each(function() {
+                    var winTop = $(window).scrollTop();
+                    var winh = $(window).height();
+                    var objpos = $(this).offset().top;
+                    if (objpos < winTop + winh * 0.8) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

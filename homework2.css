@@ -1,0 +1,30 @@
+.dropshadow1{
+    filter:drop-shadow(8px 8px 7px rgba(0, 0, 0, 0.6));
+}
+
+       #div1 {
+            background-image: url("assets2/bg1.jpg");
+        }
+
+        #div2 {
+            background-image: url("assets2/bg2.jpg");
+        }
+        
+        #div3 {
+            background-image: url("assets2/bg2.jpg");
+        }
+        #div4 {
+            background-image: url("assets2/konoha4.png");
+        }
+        #div5 {
+            background-image: url("assets2/sky_1.jpg");
+        }
+        
+        #div1, #div2, #div3, #div4, #div5{
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+}
+
+
